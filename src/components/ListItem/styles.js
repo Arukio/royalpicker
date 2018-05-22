@@ -10,7 +10,8 @@ export const styles = {
   },
   TitleText: {
     fontWeight: "600",
-    padding: 5
+    padding: 5,
+    marginLeft: 10
   },
   ImageContainer: {
     flex: 1,
