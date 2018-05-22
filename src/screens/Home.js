@@ -22,13 +22,11 @@ class Home extends Component {
     const { data, isLoading } = this.props;
     return (
       <Container>
-        if(isLoading){<Text>Loading..</Text>}else{
-          <FlatList
-            data={data}
-            renderItem={({ item }) => <ListItem decks={item} />}
-            keyExtractor={item => item.decklink}
-          />
-        }
+        <FlatList
+          data={data}
+          renderItem={({ item }) => <ListItem decks={item} />}
+          keyExtractor={item => item.decklink}
+        />
       </Container>
     );
   }
