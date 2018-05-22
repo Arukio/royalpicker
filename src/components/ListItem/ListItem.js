@@ -16,7 +16,6 @@ const calculateElixirAvg = cards => {
   let sum = cards.reduce((prev, curr) => {
     return prev + curr.elixir;
   }, 0);
-  console.log(sum, cards.length);
   return sum / cards.length;
 };
 
