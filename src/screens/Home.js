@@ -20,15 +20,19 @@ class Home extends Component {
 
   render() {
     const { data, isLoading } = this.props;
-    return (
-      <Container>
-        <FlatList
-          data={data}
-          renderItem={({ item }) => <ListItem decks={item} />}
-          keyExtractor={item => item.decklink}
-        />
-      </Container>
-    );
+    if (isLoading) {
+      return <Text>Loading..</Text>;
+    } else {
+      return (
+        <Container>
+          <FlatList
+            data={data}
+            renderItem={({ item }) => <ListItem decks={item} />}
+            keyExtractor={item => item.decklink}
+          />
+        </Container>
+      );
+    }
   }
 }
 
