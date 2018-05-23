@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, FlatList, Button } from "react-native";
+import { View, Text, Image, FlatList, Button, Linking } from "react-native";
 import { styles } from "./styles";
 import { ListItem } from "../ListItem";
 
@@ -41,7 +41,7 @@ const DeckDetail = ({ data }) => (
       <Button
         style={{ borderRadius: 10 }}
         title={"Save to Deck"}
-        onPress={() => alert("Saved")}
+        onPress={() => Linking.openURL(data.decklink)}
       />
     </View>
   </View>
