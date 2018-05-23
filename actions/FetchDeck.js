@@ -1,3 +1,8 @@
+import axios from "axios";
+const API_URL = "https://api.royaleapi.com/popular/decks";
+const APP_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDgyLCJpZGVuIjoiNDQ4Mzc5NjkxOTA5NTEzMjU2IiwibWQiOnt9fQ.eeNXhBlAj7RoLTFNQRTvac2iSHpoHK9Y-dOjiw3rMWc";
+
 export const FETCH_DECKS = "FETCH_DECKS";
 export const FETCH_DECKS_SUCCESS = "FETCH_DECKS_SUCCESS";
 export const FETCH_DECKS_FAIL = "FETCH_DECKS_FAIL";
@@ -20,25 +25,18 @@ export const fetchDecksSuccess = data => {
 export const getLastestDecks = () => {
   return dispatch => {
     dispatch(fetchDecks());
-    return fetch("https://api.royaleapi.com/popular/decks", {
-      headers: {
-        auth:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDgyLCJpZGVuIjoiNDQ4Mzc5NjkxOTA5NTEzMjU2IiwibWQiOnt9fQ.eeNXhBlAj7RoLTFNQRTvac2iSHpoHK9Y-dOjiw3rMWc"
-      }
-    })
-      .then(handleErrors)
-      .then(res => res.json())
-      .then(json => {
-        dispatch(fetchDecksSuccess(json));
-        return json;
+    return axios
+      .get(API_URL, {
+        headers: {
+          auth: APP_KEY
+        }
       })
-      .catch(error => dispatch(fetchDecksSuccess(error)));
+      .then(response => {
+        dispatch(fetchDecksSuccess(response.data));
+        return response.data;
+      })
+      .catch(e => {
+        console.log(e);
+      });
   };
 };
-
-function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
-  return response;
-}
