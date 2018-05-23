@@ -1,6 +1,6 @@
 "use strict";
 import React, { Component } from "react";
-import { Text, FlatList, TouchableOpacity } from "react-native";
+import { Text, FlatList, TouchableOpacity, View } from "react-native";
 import { connect } from "react-redux";
 import { getLastestDecks } from "../../actions/FetchDeck";
 import { getDetail, removeDetail } from "../../actions/DeckDetails";
@@ -28,7 +28,13 @@ class Home extends Component {
   render() {
     const { data, isLoading } = this.props;
     if (isLoading) {
-      return <Text>Loading..</Text>;
+      return (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <Text>Loading...</Text>
+        </View>
+      );
     } else {
       return (
         <Container>
@@ -38,6 +44,8 @@ class Home extends Component {
               <ListItem decks={item} onPress={this.openDeckDetail} />
             )}
             keyExtractor={item => item.decklink}
+            onRefresh={() => this.props.dispatch(getLastestDecks())}
+            refreshing={this.props.isLoading}
           />
           />
         </Container>
