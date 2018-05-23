@@ -38,7 +38,11 @@ const DeckDetail = ({ data }) => (
       />
     </View>
     <View style={styles.Footer}>
-      <Button title={"Save to Deck"} onPress={() => alert("Saved")} />
+      <Button
+        style={{ borderRadius: 10 }}
+        title={"Save to Deck"}
+        onPress={() => alert("Saved")}
+      />
     </View>
   </View>
 );

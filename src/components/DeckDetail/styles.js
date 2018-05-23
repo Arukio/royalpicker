@@ -25,7 +25,9 @@ export const styles = StyleSheet.create({
     height: 50,
     backgroundColor: "white",
     borderTopColor: "grey",
-    borderTopWidth: 1
+    borderTopWidth: 1,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10
   },
   CardItem: {
     height: 150,
